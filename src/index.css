@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #eef2ef;
+  --card: #ffffff;
+  --tx: #141c19;
+  --mu: #435b54;
+  --thb: #d3e7e0;
+  --tht: #0e3334;
+  --pr: #0f3d3e;
+  --pr-light: #165354;
+  --ac: #e9a914;
+  --ac2: #1f8a6a;
+  --bd: #d5dfdb;
+  --bd2: #9fb3ad;
+  --ok: #d6eedf;
+  --ab: #f6d2cd;
+  --lt: #fde3b8;
+  --er: #faefa6;
+  --inc: #e3e6e8;
+  --exc: #d2e3fa;
+  --off: #eef1f3;
+  --sh: 0 1px 3px rgba(15,61,62,.08), 0 8px 24px -10px rgba(15,61,62,.16);
+}
+
+:root.dark, html.dark {
+  --bg: #091718;
+  --card: #102627;
+  --tx: #e6f1ee;
+  --mu: #9bb5b0;
+  --thb: #082829;
+  --tht: #eaf3f0;
+  --pr: #062021;
+  --pr-light: #0d3637;
+  --ac: #f2b933;
+  --ac2: #4fd1a1;
+  --bd: #213e3f;
+  --bd2: #386062;
+  --ok: #175038;
+  --ab: #5c2623;
+  --lt: #5c3f16;
+  --er: #59511a;
+  --inc: #2c3839;
+  --exc: #1f4170;
+  --off: #172a2b;
+  --sh: 0 2px 8px rgba(0,0,0,.5);
+}
+
+body {
+  font-family: Tajawal, Cairo, system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--tx);
+  line-height: 1.65;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-reem {
+  font-family: 'Reem Kufi', Tajawal, sans-serif;
+}
+
+/* Enforce clear, large, legible tabular numbers across all tables */
+table td, table th {
+  font-variant-numeric: tabular-nums;
+}
+
+table td.font-mono, table td[class*="col-"], table td b, table td strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbars for data tables */
+.custom-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bd) 35%, transparent);
+  border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--bd2);
+  border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--ac2);
+}
+
+/* Matrix cell badges */
+.c-ح { background-color: var(--ok) !important; color: var(--tx); }
+.c-غ { background-color: var(--ab) !important; font-weight: 700; color: var(--tx); cursor: pointer; }
+.c-ت { background-color: var(--lt) !important; }
+.c-م { background-color: var(--er) !important; }
+.c-ب { background-color: var(--inc) !important; font-style: italic; }
+.c-إ { background-color: var(--exc) !important; cursor: pointer; }
+
+/* Print styling - Preserve 100% of the table's original colors, borders, badges & formatting, scaled to A4 */
+@media print {
+  @page {
+    size: A4 auto;
+    margin: 6mm 6mm 8mm 6mm;
+  }
+  .noprint, nav, header, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #141c19 !important;
+    font-size: var(--pfs, 9.5px) !important;
+    line-height: 1.3 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  main, #printable-content-root {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    zoom: var(--print-zoom, 1) !important;
+  }
+  /* Remove overflow clipping on table wrappers during print */
+  .overflow-x-auto, div[class*="overflow-x"] {
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+  table, table.min-w-max, .min-w-max {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: var(--pfs, 9.5px) !important;
+    page-break-inside: auto !important;
+  }
+  /* Preserve original styling, remove sticky positioning during print */
+  th, td {
+    position: static !important;
+    box-shadow: none !important;
+    white-space: nowrap !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  thead {
+    display: table-header-group !important;
+  }
+  tfoot {
+    display: table-footer-group !important;
+  }
+  tfoot td {
+    position: static !important;
+  }
+  tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .printhead {
+    display: block !important;
+    margin-bottom: 12px !important;
+  }
+  .printfoot {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    margin-top: 24px !important;
+    padding-top: 8px !important;
+    border-top: 2px solid #0f3d3e !important;
+    page-break-inside: avoid !important;
+  }
+  body.bw * {
+    -webkit-print-color-adjust: economy !important;
+  }
+  .bw .c-ح, .bw .c-غ, .bw .c-ت, .bw .c-م, .bw .c-ب, .bw .c-إ, .bw td[style] {
+    background: #fff !important;
+  }
+}

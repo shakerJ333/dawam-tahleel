@@ -1,0 +1,6 @@
+{
+  "name": "نظام تحليل بصمة الدوام",
+  "description": "نظام متكامل واحترافي لتحليل بصمات حضور وانصراف المعلمين والموظفين محلياً داخل المتصفح مع تقارير وإحصائيات دقيقة وتصدير إكسل وPDF",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
